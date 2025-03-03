@@ -39,6 +39,18 @@ body {
    margin: 0;
 }
 
+.profile__avatar {
+    max-width: 115px;
+    max-height: 115px;
+    align-self: center;
+    justify-self: center;
+}
+
+.profile__avatar_img {
+    width: 100%;
+    height: 100%;
+}
+
 .profile__about_edit {
     background: #000000;
     border-color: #ffffff;
