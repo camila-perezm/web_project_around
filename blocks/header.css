@@ -1,0 +1,11 @@
+.header {
+    height: 56px;
+    padding-top: 28px;
+}
+
+.header__img {
+    width: 126px;
+    height: 24px;
+    padding-left: 27px;
+    align-self: flex-end; 
+}
