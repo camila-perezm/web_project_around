@@ -37,6 +37,7 @@
  
  .profile__about_ocupation {
      margin-top: 0;
+     text-align: center;
  }
  
  .profile__button_add {
@@ -54,23 +55,20 @@
 
  @media screen and (min-width: 1280px) {  
     .profile {
-        max-width: 880px;
-        display: grid;
-        grid-template-areas: 
-        "profile__avatar profile__about_name profile__button_add"
-        "profile__avatar profile__about_ocupation profile__button_add";
+       max-width: 880px;
+       display: flex;
+       flex-direction: row;
+       align-items: center;
+       justify-content: space-between;
     }
     
     .profile__avatar {
-        grid-area: profile__avatar;
+        
     }
     
     .profile__about_name {
-        grid-area: profile__about_name;
-        margin: 0;
-        font-size: 42px;
-        align-self: flex-end;
-        justify-self: start;
+        font-size: 42px;  
+        padding-bottom: 20px;
     }
     
     .profile__about_edit-icon {
@@ -79,15 +77,12 @@
     }
     
     .profile__button_add {
-        grid-area: profile__button_add;
-        margin: 0 auto;
-        align-self: center;
+        
     }
     
     .profile__about_ocupation {
-        grid-area: profile__about_ocupation;
         font-size: 18px;
-        justify-self: start;
+        text-align: left;
     }
     
     .profile__button_add {

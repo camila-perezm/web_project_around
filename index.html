@@ -26,26 +26,19 @@
               class="profile__avatar_img"
             />
           </div>
+          <div class="profile__about">
+            <h2 class="profile__about_name">Camila Perez</h2>
+            <p class="profile__about_ocupation">Traveler</p>
+          </div>
 
-          <h2 class="profile__about_name">
-            Camila Perez
-            <button class="profile__about_edit">
-              <img src="./images/edit_profile.png" />
-            </button>
-          </h2>
-          <p class="profile__about_ocupation">Traveler</p>
-
+          <button class="profile__about_edit">
+            <img
+              class="profile__about_edit-icon"
+              src="./images/edit_profile.png"
+            />
+          </button>
           <button class="profile__button_add">+</button>
         </section>
-
-        <div class="popup">
-          <h3>Editar perfil</h3>
-          <form>
-            <input type="text" name="Nombre" class="popup__name" />
-            <input type="text" name="Acerca de mi" class="popup__ocupation" />
-            <button class="popup__save_button">Guardar</button>
-          </form>
-        </div>
 
         <section class="cards">
           <div class="card">
@@ -149,5 +142,31 @@
         <p class="footer__copyright">&copy; 2025 Camila Perez</p>
       </footer>
     </div>
+
+    <section class="popup">
+      <div class="popup__content">
+        <button class="popup__close_button">
+          <img class="popup__close_button-icon" src="./images/Close Icon.png" />
+        </button>
+        <h3 class="popup__title">Editar perfil</h3>
+        <form class="popup__form" name="Editar perfil">
+          <input
+            type="text"
+            placeholder="Nombre"
+            id="name"
+            class="popup__form_name"
+          />
+          <input
+            type="text"
+            placeholder="Acerca de mí"
+            id="ocupation"
+            class="popup__form_ocupation"
+          />
+          <button class="popup__save_button">Guardar</button>
+        </form>
+      </div>
+    </section>
+
+    <script src="./script.js"></script>
   </body>
 </html>
