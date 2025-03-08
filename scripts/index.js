@@ -1,12 +1,12 @@
 
-const openModal = document.querySelector(".profile__about_edit");
+const openModal = document.querySelector(".profile__about-edit");
 const popup = document.querySelector(".popup");
-const closeModal = document.querySelector(".popup__close_button")
+const closeModal = document.querySelector(".popup__close-button")
 const formElement = document.querySelector(".popup__form")
 const inputName = document.querySelector("#name")
 const inputOcupation = document.querySelector("#ocupation")
-const profileName = document.querySelector(".profile__about_name")
-const profileOcupation = document.querySelector(".profile__about_ocupation")
+const profileName = document.querySelector(".profile__about-name")
+const profileOcupation = document.querySelector(".profile__about-ocupation")
 
 
 
