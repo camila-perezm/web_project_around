@@ -17,16 +17,16 @@
 .popup__content {
     font-family: "Inter-Regular", sans-serif;
     position: relative;
-    margin: 15% auto;
-    padding: 20px;
     border: 1px solid #888;
-    max-width: 300px;
+    max-width: 280px;
     border-radius: 4px;
    background-color: #FFFFFF;
    display: flex;
    flex-direction: column;
    align-content: center;
    justify-content: center;
+   padding-bottom: 20px;
+   margin: auto;
 }
 
 .popup__title {
@@ -79,7 +79,7 @@
     border: none;
     position: absolute;
     top: -30px;
-    right: -20px;
+    right: 10px;
 }
 
 @media screen and (min-width: 1280px) { 
