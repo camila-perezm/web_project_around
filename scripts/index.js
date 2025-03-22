@@ -12,7 +12,7 @@ const popup2 = document.querySelector(".popup2");
 const openModal2 = document.querySelector(".profile__button-add")
 const closeModal2 = document.querySelector(".popup__close-button2")
 
-
+/*Abrir y cerar modal de editar perfil*/
 if (openModal && popup && closeModal) {
 openModal.addEventListener("click", (event) => {
     event.preventDefault();
@@ -24,7 +24,7 @@ closeModal.addEventListener("click", () => {
 });
 }
 
-
+/*Abrir y cerar modal de añadir carta*/
 if (openModal2 && popup2 && closeModal2) {
     openModal2.addEventListener("click", (event) => {
         event.preventDefault();
@@ -36,7 +36,7 @@ if (openModal2 && popup2 && closeModal2) {
     });
     }
 
-
+/*Editar nombre y ocupacion*/
 formElement.addEventListener("submit", (event) => {
     event.preventDefault();
     const nameValue = inputName.value.trim();
@@ -88,9 +88,11 @@ const inputTitle = document.querySelector("#titulo");
 const inputLink = document.querySelector("#link");
 const addButton = document.querySelector(".profile__button-add");
 
+
+/*Crear cartas con el template*/
 function createCard (card) {
 const newNode = cardTemplate.content.querySelector(".card").cloneNode(true);
-newNode.querySelector(".card__img-container").src=card.link
+newNode.querySelector(".card__img-url").src=card.link
 newNode.querySelector(".card__text").textContent=card.name
 newNode.querySelector(".card__delete-icon").addEventListener("click", function(){
     newNode.remove();
@@ -107,12 +109,13 @@ cards.append(newNode);
 }
 renderCards();
 
+/*Añadir nuevas cartas con el boton + */
 addButton.addEventListener("click", function(){
     const name = inputName.value.trim();
     const link = inputLink.value.trim();
 
 if (name && link) {
-    const newCard = {name, link};
+    const newCard = { name, link };
     initialCards.push(newCard);
     const newNode = createCard(name, link);
     cardTemplate.append(newNode);
@@ -124,4 +127,5 @@ if (name && link) {
 }
 });
 
-  
+
+

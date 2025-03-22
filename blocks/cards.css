@@ -9,17 +9,26 @@
     white-space: nowrap;
     overflow: hidden;
 }
+
+.card {
+    margin-top: 30px;
+}
  
 .card__img {
     position: relative;
     display: inline-block;
 }
-.card__img-container {
+.card__img-url {
     width: 282px;
     height: 282px;  
     object-fit: cover;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
+}
+
+.card__img-url-open {
+    max-width: 75vw;
+    max-height: 75vh;
 }
 
 .card__delete-icon {
@@ -30,13 +39,25 @@
 }
 
 .card__text {
-    background: #ffffff;
     color: #000000;
+    font-size: 16px;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 282px;
+}
+
+.card__text-container {
+    display: flex;
     margin-top: 0;
-    padding: 30px 25px;
+    align-items: center;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
-    text-align: center;
+    background: #ffffff;
+    max-height: 79px;
+    padding-left: 21px;
+   
 }
 
 .card__text-button-like {
@@ -47,8 +68,8 @@
 .card__button-like-active {
     border: none;
     background-color: black;  
-
 }
+
 
 
 @media screen and (min-width: 1280px) {
