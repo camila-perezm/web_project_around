@@ -39,103 +39,20 @@
           <button class="profile__button-add">+</button>
         </section>
 
-        <section class="cards">
+        <section class="cards" id="cards"></section>
+        <template id="card-template">
           <div class="card">
             <div class="card__img">
-              <img
-                class="card__img-container"
-                src="./images/NYC-min.jpg"
-                alt="NYC"
-              />
+              <img class="card__delete-icon" src="./images/delete.svg" alt="" />
+              <img class="card__img-container" src="" alt="" />
             </div>
             <h2 class="card__text">
-              New York City
               <button class="card__text-button-like">
-                <img src="./images/like.svg" alt="like" />
+                <img src="./images/like.svg" alt="Like" />
               </button>
             </h2>
           </div>
-
-          <div class="card">
-            <div class="card__img">
-              <img
-                class="card__img-container"
-                src="./images/LA-min.jpg"
-                alt="Los Angeles"
-              />
-            </div>
-            <h2 class="card__text">
-              Los Angeles
-              <button class="card__text-button-like">
-                <img src="./images/like.svg" alt="like" />
-              </button>
-            </h2>
-          </div>
-
-          <div class="card">
-            <div class="card__img">
-              <img
-                class="card__img-container"
-                src="./images/miami-min.jpg"
-                alt="Miami"
-              />
-            </div>
-            <h2 class="card__text">
-              Miami
-              <button class="card__text-button-like">
-                <img src="./images/like.svg" alt="like" />
-              </button>
-            </h2>
-          </div>
-
-          <div class="card">
-            <div class="card__img">
-              <img
-                class="card__img-container"
-                src="./images/SF-min.jpg"
-                alt="San Francisco"
-              />
-            </div>
-            <h2 class="card__text">
-              San Francisco
-              <button class="card__text-button-like">
-                <img src="./images/like.svg" alt="like" />
-              </button>
-            </h2>
-          </div>
-
-          <div class="card">
-            <div class="card__img">
-              <img
-                class="card__img-container"
-                src="./images/dc.jpg"
-                alt="Washington, D.C"
-              />
-            </div>
-            <h2 class="card__text">
-              Washington, D.C
-              <button class="card__text-button-like">
-                <img src="./images/like.svg" alt="like" />
-              </button>
-            </h2>
-          </div>
-
-          <div class="card">
-            <div class="card__img">
-              <img
-                class="card__img-container"
-                src="./images/vegas-min.jpg"
-                alt="Las vegas"
-              />
-            </div>
-            <h2 class="card__text">
-              Las Vegas
-              <button class="card__text-button-like">
-                <img src="./images/like.svg" alt="like" />
-              </button>
-            </h2>
-          </div>
-        </section>
+        </template>
       </main>
       <footer class="footer">
         <p class="footer__copyright">&copy; 2025 Camila Perez</p>
@@ -159,6 +76,30 @@
             type="text"
             placeholder="Traveler"
             id="ocupation"
+            class="popup__form-ocupation"
+          />
+          <button class="popup__save-button">Guardar</button>
+        </form>
+      </div>
+    </section>
+
+    <section class="popup2">
+      <div class="popup__content">
+        <button class="popup__close-button2">
+          <img class="popup__close-button-icon" src="./images/Close Icon.png" />
+        </button>
+        <h3 class="popup__title">Nuevo Lugar</h3>
+        <form class="popup__form" name="Nuevo lugar">
+          <input
+            type="text"
+            placeholder="Titulo"
+            id="titulo"
+            class="popup__form-name"
+          />
+          <input
+            type="text"
+            placeholder="Enlace a la imagen"
+            id="link"
             class="popup__form-ocupation"
           />
           <button class="popup__save-button">Guardar</button>
