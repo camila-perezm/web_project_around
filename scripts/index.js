@@ -54,6 +54,7 @@ inputOcupation.value = '';
 
 });
 
+/* Iterar nuevas cartas */
 const initialCards = [
     {
       name: "Valle de Yosemite",
@@ -117,7 +118,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const closePopupImg = document.querySelector(".popup__image-close-btn");
 
     if (openPopupImg && closePopupImg) {
-        /*Función para manejar la abrir el popup de imagen*/
+        /*Función para manejar y abrir el popup de imagen*/
         function handlePopupImgOpen(name, link) {
             const popupImg = openPopupImg.querySelector(".popup__image-url");
             const popupText = openPopupImg.querySelector(".popup__image-text");
@@ -159,25 +160,31 @@ likeButtons.forEach(likeButton => {
 });
 
 /*Añadir nuevas cartas con el boton "+" ESTE CODIGO TIENE ERRORES*/
-addButton.addEventListener("submit", function(event){
-    event.preventDefault()
-    const name = inputName.value.trim();
-    const link = inputLink.value.trim();
+document.addEventListener('DOMContentLoaded', function () {
+const formElement2 = document.querySelector(".popup__form2");
+const inputImgTitle = document.querySelector(".popup__form-title");
+const inputImgUrl = document.querySelector(".popup__form-url");
+const buttonSaveImg = document.querySelector(".popup__save-button")
+
+formElement2.addEventListener("submit", function(event){
+    event.preventDefault();
+    const name = inputImgTitle.value.trim();
+    const link = inputImgUrl.value.trim();
 
 if (name && link) {
-    const newCard = {name, link };
+    const newCard = { name, link };
     initialCards.push(newCard);
 
-    const newNode = createCard(name, link);
+    const newNode = createCard(newCard);
     cardTemplate.append(newNode);
 
-    inputName.value = "";
-    inputLink.value = "";
+    inputImgTitle.value = "";
+    inputImgUrl.value = "";
+
 } else {
     alert("Por favor, ingrese su nombre y enlace válido.");
 }
-
-});
+})})
 
 
 
