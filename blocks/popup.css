@@ -96,19 +96,21 @@
 .popup__image-show {
     display: flex;
     justify-content: center;
-    width: 100%;
-    height: 100%;
 }
 
 .popup__image-root-container {
     flex: 1;
     display: flex;
+    width: max-content;
+    max-width: 75vw;
+    max-height: 75vh;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
 .popup__image-container {
+    width: max-content;
     position: relative;
     max-width: 75vw;
     max-height: 75vh;

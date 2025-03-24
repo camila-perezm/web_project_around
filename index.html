@@ -85,6 +85,13 @@
                 </form>
             </div>
         </section>
+        <!-- Feedback: es necesario reorganizar los elementos del popup y las clases de css para que tengan sentido
+          Popup_image: es el background, y el "contenedor de toda la pantalla"  
+          popup__image-root-container: es el contenedor del popup en si, debe estar centrado en la pantall y tener 
+          un ancho y alto maximo de 75vw y 75vh
+          popup__image-close-btn: es el boton para cerrar el popup, debe estar en la parte superior derecha de la imagen
+          popup__image-text: es el texto que se muestra en el popup, su posicion depende del ancho de la imagen
+        -->
         <section class="popup__image">
             <div class="popup__image-root-container">
                 <div class="popup__image-container">
@@ -92,8 +99,8 @@
                         <img src="./images/Close Icon.png" alt="Close" />
                     </button>
                     <img class="popup__image-url" src="" alt="" />
+                    <h2 class="popup__image-text"></h2>
                 </div>
-                <h2 class="popup__image-text"></h2>
             </div>
         </section>
         <script src="./scripts/index.js"></script>
