@@ -110,36 +110,14 @@ cards.append(newNode);
 }
 renderCards();
 
-/* Crear ventana emergente con la imagen luego de darle click ESTE CODIGO TIENE ERRORES
-
-const openPopupImg = document.querySelector(".popup__image")
-const closePopupImg = document.querySelector(".popup__image-close-btn")
-
-
-function handlePopupImgOpen(name, link) {
-  
-    const popupImg = openPopupImg.querySelector(".popup__image-url");
-    const popupText = openPopupImg.querySelector(".popup__image-text");
-
-    popupImg.src = link;
-    popupImg.alt = name;
-    popupText.textContent = name;
-
-    openPopupImg.classList.add("popup__image-show");
-    
-}
-
-closePopupImg.addEventListener("click", () => {
-    openPopupImg.classList.remove("popup__image-show"); 
-});
-*/
+/* Crear ventana emergente con la imagen luego de darle click*/
 
 document.addEventListener("DOMContentLoaded", () => {
     const openPopupImg = document.querySelector(".popup__image");
     const closePopupImg = document.querySelector(".popup__image-close-btn");
 
     if (openPopupImg && closePopupImg) {
-        // Función para manejar la apertura del popup de imagen
+        /*Función para manejar la abrir el popup de imagen*/
         function handlePopupImgOpen(name, link) {
             const popupImg = openPopupImg.querySelector(".popup__image-url");
             const popupText = openPopupImg.querySelector(".popup__image-text");
@@ -151,28 +129,24 @@ document.addEventListener("DOMContentLoaded", () => {
             openPopupImg.classList.add("popup__image-show");
         }
 
-        // Evento para cerrar el popup
+        /*Evento para cerrar el popup*/
         closePopupImg.addEventListener("click", () => {
             openPopupImg.classList.remove("popup__image-show"); 
         });
 
-        // Evento para abrir el popup con la imagen de la tarjeta
+        /*Evento para abrir el popup con la imagen de la tarjeta*/
         const cardImages = document.querySelectorAll(".card__img-url");
         cardImages.forEach((img) => {
             img.addEventListener("click", () => {
-                const name = img.alt;  // Usamos el 'alt' de la imagen como el nombre
-                const link = img.src;  // Usamos el 'src' de la imagen como el enlace
-                handlePopupImgOpen(name, link);  // Llamamos a la función para abrir el popup
+                const name = img.alt;  
+                const link = img.src;  
+                handlePopupImgOpen(name, link);  
             });
         });
     } else {
         console.error('No se encontraron los elementos .popup__image o .popup__image-close-btn en el DOM.');
     }
 });
-
-
-
-
 
 
 /* funcionalidad del boton like, para cambiar el color del boton despues de un click*/
