@@ -1,120 +1,101 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Alrededor de los EE.UU." />
-    <meta name="author" content="Camila Perez" />
-    <meta name="keywords" content="HTML, CSS" />
-    <title>Alrededor de los EE.UU.</title>
-    <link rel="shortcut icon" href="./icon.svg" />
-    <link rel="stylesheet" href="./pages/index.css" />
-  </head>
-  <body>
-    <div class="page">
-      <header class="header">
-        <div class="header__img">
-          <img src="./images/header_img.png" alt="Alrededor de los EE.UU." />
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="Alrededor de los EE.UU." />
+        <meta name="author" content="Camila Perez" />
+        <meta name="keywords" content="HTML, CSS" />
+        <title>Alrededor de los EE.UU.</title>
+        <link rel="shortcut icon" href="./icon.svg" />
+        <link rel="stylesheet" href="./pages/index.css" />
+    </head>
+    <body>
+        <div class="page">
+            <header class="header">
+                <div class="header__img">
+                    <img src="./images/header_img.png" alt="Alrededor de los EE.UU." />
+                </div>
+            </header>
+            <main class="content">
+                <section class="profile">
+                    <div class="profile__avatar">
+                        <img src="./images/profilepic-min.png" alt="Avatar image" class="profile__avatar-img" />
+                    </div>
+                    <div class="profile__about">
+                        <h2 class="profile__about-name">Camila Perez</h2>
+                        <p class="profile__about-ocupation">Traveler</p>
+                    </div>
+                    <button class="profile__about-edit">
+                        <img class="profile__about-edit-icon" src="./images/edit_profile.png" />
+                    </button>
+                    <button class="profile__button-add">+</button>
+                </section>
+
+                <section class="cards" id="cards"></section>
+                <template id="card-template">
+                    <div class="card">
+                        <div class="card__img">
+                            <img class="card__delete-icon" src="./images/delete.svg" alt="" />
+                            <img class="card__img-url" src="" alt="" />
+                        </div>
+                        <div class="card__text-container">
+                            <h2 class="card__text"></h2>
+                            <button class="card__text-button-like">
+                                <img src="./images/like.svg" alt="Like" />
+                            </button>
+                        </div>
+                    </div>
+                </template>
+            </main>
+            <footer class="footer">
+                <p class="footer__copyright">&copy; 2025 Camila Perez</p>
+            </footer>
         </div>
-      </header>
-      <main class="content">
-        <section class="profile">
-          <div class="profile__avatar">
-            <img
-              src="./images/profilepic-min.png"
-              alt="Avatar image"
-              class="profile__avatar-img"
-            />
-          </div>
-          <div class="profile__about">
-            <h2 class="profile__about-name">Camila Perez</h2>
-            <p class="profile__about-ocupation">Traveler</p>
-          </div>
-          <button class="profile__about-edit">
-            <img
-              class="profile__about-edit-icon"
-              src="./images/edit_profile.png"
-            />
-          </button>
-          <button class="profile__button-add">+</button>
+
+        <section class="popup">
+            <div class="popup__content">
+                <button class="popup__close-button">
+                    <img class="popup__close-button-icon" src="./images/Close Icon.png" />
+                </button>
+                <h3 class="popup__title">Editar perfil</h3>
+                <form class="popup__form" name="Editar perfil">
+                    <input type="text" placeholder="Camila Perez" id="name" class="popup__form-name" />
+                    <input type="text" placeholder="Traveler" id="ocupation" class="popup__form-ocupation" />
+                    <button class="popup__save-button">Guardar</button>
+                </form>
+            </div>
         </section>
+        <!-- Feedback: No hagas clases como "popup2" y "close-button2"...,
+      trata de reusar el mismo popup,botones y estilos para todos los modales
+      lo que cambia es el contenido del popup.
+      -->
+        <section class="popup2">
+            <div class="popup__content">
+                <button class="popup__close-button2">
+                    <img class="popup__close-button-icon" src="./images/Close Icon.png" />
+                </button>
+                <h3 class="popup__title">Nuevo Lugar</h3>
 
-        <section class="cards" id="cards"></section>
-        <template id="card-template">
-          <div class="card">
-            <div class="card__img">
-              <img class="card__delete-icon" src="./images/delete.svg" alt="" />
-              <img class="card__img-url" src="" alt="" />
+                <!-- Feedback: los forms suelen tener id, o algún selector unico para identificarlo  -->
+                <form class="popup__form" name="Nuevo lugar" id="addCardForm">
+                    <input type="text" placeholder="Titulo" id="titulo" class="popup__form-name" />
+                    <input type="text" placeholder="Enlace a la imagen" id="link" class="popup__form-ocupation" />
+                    <button class="popup__save-button">Guardar</button>
+                </form>
             </div>
-            <div class="card__text-container">
-              <h2 class="card__text"></h2>
-              <button class="card__text-button-like">
-                <img src="./images/like.svg" alt="Like" />
-              </button>
+        </section>
+        <section class="popup__image">
+            <div class="popup__image-root-container">
+                <div class="popup__image-container">
+                    <button class="popup__image-close-btn">
+                        <img src="./images/Close Icon.png" alt="Close" />
+                    </button>
+                    <img class="popup__image-url" src="" alt="" />
+                </div>
+                <h2 class="popup__image-text"></h2>
             </div>
-          </div>
-        </template>
-      </main>
-      <footer class="footer">
-        <p class="footer__copyright">&copy; 2025 Camila Perez</p>
-      </footer>
-    </div>
-
-    <section class="popup">
-      <div class="popup__content">
-        <button class="popup__close-button">
-          <img class="popup__close-button-icon" src="./images/Close Icon.png" />
-        </button>
-        <h3 class="popup__title">Editar perfil</h3>
-        <form class="popup__form" name="Editar perfil">
-          <input
-            type="text"
-            placeholder="Camila Perez"
-            id="name"
-            class="popup__form-name"
-          />
-          <input
-            type="text"
-            placeholder="Traveler"
-            id="ocupation"
-            class="popup__form-ocupation"
-          />
-          <button class="popup__save-button">Guardar</button>
-        </form>
-      </div>
-    </section>
-    <section class="popup2">
-      <div class="popup__content">
-        <button class="popup__close-button2">
-          <img class="popup__close-button-icon" src="./images/Close Icon.png" />
-        </button>
-        <h3 class="popup__title">Nuevo Lugar</h3>
-        <form class="popup__form" name="Nuevo lugar">
-          <input
-            type="text"
-            placeholder="Titulo"
-            id="titulo"
-            class="popup__form-name"
-          />
-          <input
-            type="text"
-            placeholder="Enlace a la imagen"
-            id="link"
-            class="popup__form-ocupation"
-          />
-          <button class="popup__save-button">Guardar</button>
-        </form>
-      </div>
-    </section>
-    <section class="popup__image">
-      <button class="popup__image-close-btn">
-        <img src="./images/Close Icon.png" alt="Close" />
-      </button>
-      <div class="popup__image-container">
-        <img class="popup__image-url" src="" alt="" />
-      </div>
-      <h2 class="popup__image-text"></h2>
-    </section>
-    <script src="./scripts/index.js"></script>
-  </body>
+        </section>
+        <script src="./scripts/index.js"></script>
+    </body>
 </html>
