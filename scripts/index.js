@@ -87,9 +87,11 @@ const cardTemplate = document.querySelector("#card-template");
 const inputTitle = document.querySelector("#titulo");
 const inputLink = document.querySelector("#link");
 const addButton = document.querySelector(".profile__button-add");
+const saveButton = document.querySelector(".popup__save-button")
 
 
-/*Crear cartas con el template*/
+
+/*Crear y eliminar cartas con el template*/
 function createCard (card) {
 const newNode = cardTemplate.content.querySelector(".card").cloneNode(true);
 newNode.querySelector(".card__img-url").src=card.link
@@ -97,7 +99,6 @@ newNode.querySelector(".card__text").textContent=card.name
 newNode.querySelector(".card__delete-icon").addEventListener("click", function(){
     newNode.remove();
 })
-
 return newNode;
 }
 
@@ -109,14 +110,90 @@ cards.append(newNode);
 }
 renderCards();
 
-/*Añadir nuevas cartas con el boton + */
-addButton.addEventListener("click", function(){
+/* Crear ventana emergente con la imagen luego de darle click ESTE CODIGO TIENE ERRORES
+
+const openPopupImg = document.querySelector(".popup__image")
+const closePopupImg = document.querySelector(".popup__image-close-btn")
+
+
+function handlePopupImgOpen(name, link) {
+  
+    const popupImg = openPopupImg.querySelector(".popup__image-url");
+    const popupText = openPopupImg.querySelector(".popup__image-text");
+
+    popupImg.src = link;
+    popupImg.alt = name;
+    popupText.textContent = name;
+
+    openPopupImg.classList.add("popup__image-show");
+    
+}
+
+closePopupImg.addEventListener("click", () => {
+    openPopupImg.classList.remove("popup__image-show"); 
+});
+*/
+
+document.addEventListener("DOMContentLoaded", () => {
+    const openPopupImg = document.querySelector(".popup__image");
+    const closePopupImg = document.querySelector(".popup__image-close-btn");
+
+    if (openPopupImg && closePopupImg) {
+        // Función para manejar la apertura del popup de imagen
+        function handlePopupImgOpen(name, link) {
+            const popupImg = openPopupImg.querySelector(".popup__image-url");
+            const popupText = openPopupImg.querySelector(".popup__image-text");
+
+            popupImg.src = link;
+            popupImg.alt = name;
+            popupText.textContent = name;
+
+            openPopupImg.classList.add("popup__image-show");
+        }
+
+        // Evento para cerrar el popup
+        closePopupImg.addEventListener("click", () => {
+            openPopupImg.classList.remove("popup__image-show"); 
+        });
+
+        // Evento para abrir el popup con la imagen de la tarjeta
+        const cardImages = document.querySelectorAll(".card__img-url");
+        cardImages.forEach((img) => {
+            img.addEventListener("click", () => {
+                const name = img.alt;  // Usamos el 'alt' de la imagen como el nombre
+                const link = img.src;  // Usamos el 'src' de la imagen como el enlace
+                handlePopupImgOpen(name, link);  // Llamamos a la función para abrir el popup
+            });
+        });
+    } else {
+        console.error('No se encontraron los elementos .popup__image o .popup__image-close-btn en el DOM.');
+    }
+});
+
+
+
+
+
+
+/* funcionalidad del boton like, para cambiar el color del boton despues de un click*/
+const likeButtons = document.querySelectorAll(".card__text-button-like");
+
+likeButtons.forEach(likeButton => {
+  likeButton.addEventListener("click", () => {
+    likeButton.classList.toggle("card__text-button-like-active");
+  });
+});
+
+/*Añadir nuevas cartas con el boton "+" ESTE CODIGO TIENE ERRORES*/
+addButton.addEventListener("submit", function(event){
+    event.preventDefault()
     const name = inputName.value.trim();
     const link = inputLink.value.trim();
 
 if (name && link) {
-    const newCard = { name, link };
+    const newCard = {name, link };
     initialCards.push(newCard);
+
     const newNode = createCard(name, link);
     cardTemplate.append(newNode);
 
@@ -125,6 +202,7 @@ if (name && link) {
 } else {
     alert("Por favor, ingrese su nombre y enlace válido.");
 }
+
 });
 
 

@@ -80,6 +80,51 @@
     right: 10px;
 }
 
+.popup__image {
+    display: none; 
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4); 
+    padding-top: 123px;
+}
+
+.popup__image-show {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.popup__image-container {
+    max-width: 75vw;
+    max-height: 75vh;  
+}
+
+.popup__image-url {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+
+.popup__image-close-btn {
+    max-width: 40px;
+    max-height: 40px;
+    background: none;
+    border: none;
+}
+
+.popup__image-text {
+    color: #FFFFFF;
+}
+
 @media screen and (min-width: 1280px) { 
 
 .popup__content {
@@ -106,4 +151,5 @@
 .popup__save-button {
     width: 100%;
 }
+
 }

@@ -17,6 +17,7 @@
 .card__img {
     position: relative;
     display: inline-block;
+    display: flex;
 }
 .card__img-url {
     width: 282px;
@@ -62,15 +63,29 @@
 
 .card__text-button-like {
     border: none;
-    background-color: #ffffff;    
+    width: 21px;
+    height: 19px;
+    cursor: pointer;
+    display: flex;
+    background-color: #ffffff;  
+    padding-right: 30px; 
+    padding-left: 0px; 
 }
 
-.card__button-like-active {
+.card__text-button-like:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+.card__text-button-like-active {
+    background-image: url(../images/like-active.svg);
+    background-repeat: no-repeat;
     border: none;
-    background-color: black;  
+    width: 21px;
+    height: 19px;
+    cursor: pointer;
+    background-size: contain;
 }
-
-
 
 @media screen and (min-width: 1280px) {
     .cards {
@@ -80,5 +95,10 @@
         column-gap: 20px;
         row-gap: 20px;
         max-width: 880px; 
+     }
+
+     .card {
+        width: 282px;
+        height: 361px;
      }
 }
