@@ -66,10 +66,7 @@
                 </form>
             </div>
         </section>
-        <!-- Feedback: No hagas clases como "popup2" y "close-button2"...,
-      trata de reusar el mismo popup,botones y estilos para todos los modales
-      lo que cambia es el contenido del popup.
-      -->
+
         <section class="popup2">
             <div class="popup__content">
                 <button class="popup__close-button2">
@@ -77,7 +74,6 @@
                 </button>
                 <h3 class="popup__title">Nuevo Lugar</h3>
 
-                <!-- Feedback: los forms suelen tener id, o algún selector unico para identificarlo  -->
                 <form class="popup__form" name="Nuevo lugar" id="addCardForm">
                     <input type="text" placeholder="Titulo" id="titulo" class="popup__form-name" />
                     <input type="text" placeholder="Enlace a la imagen" id="link" class="popup__form-ocupation" />
@@ -85,13 +81,6 @@
                 </form>
             </div>
         </section>
-        <!-- Feedback: es necesario reorganizar los elementos del popup y las clases de css para que tengan sentido
-          Popup_image: es el background, y el "contenedor de toda la pantalla"  
-          popup__image-root-container: es el contenedor del popup en si, debe estar centrado en la pantall y tener 
-          un ancho y alto maximo de 75vw y 75vh
-          popup__image-close-btn: es el boton para cerrar el popup, debe estar en la parte superior derecha de la imagen
-          popup__image-text: es el texto que se muestra en el popup, su posicion depende del ancho de la imagen
-        -->
         <section class="popup__image">
             <div class="popup__image-root-container">
                 <div class="popup__image-container">
