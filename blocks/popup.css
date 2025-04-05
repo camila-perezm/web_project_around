@@ -181,4 +181,8 @@ input.touched:invalid {
     .popup__save-button {
         width: 100%;
     }
+
+    .popup__button_disabled {
+        width: 100%;
+    }
 }
