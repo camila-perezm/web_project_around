@@ -1,6 +1,4 @@
-
-
-
+import {enableValidation} from './validate.js'
 
 const openModal = document.querySelector('.profile__about-edit');
 const popup = document.querySelector('.popup');
@@ -65,6 +63,21 @@ if (openModal && popup && closeModal) {
     closeModal.addEventListener('click', () => {
         popup.classList.remove('popup__show');
     });
+
+ // Agrega un evento para cerrar el popup al hacer clic fuera de la ventana emergente
+ popup.addEventListener('click', (event) => {
+    // Verifica si el clic fue fuera del contenido del popup (y no sobre el contenido)
+    if (event.target === popup) {
+        popup.classList.remove('popup__show'); // Cerrar el popup si el clic fue fuera del contenido
+    }
+});
+
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {  // Comprueba si la tecla presionada es "Esc"
+        popup.classList.remove('popup__show'); // Cerrar el popup
+    }
+});
+
 }
 
 /*Abrir y cerar modal de añadir carta*/
@@ -77,6 +90,21 @@ if (openModal2 && popup2 && closeModal2) {
     closeModal2.addEventListener('click', () => {
         popup2.classList.remove('popup__show');
     });
+    
+ // Agregar un evento para cerrar el popup al hacer clic fuera de la ventana emergente
+ popup2.addEventListener('click', (event) => {
+    
+    if (event.target === popup2) {
+        popup2.classList.remove('popup__show'); 
+    }
+});
+
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {  
+        popup2.classList.remove('popup__show'); 
+    }
+});
+
 }
 
 /*Editar nombre y ocupacion*/
@@ -98,12 +126,14 @@ formElement.addEventListener('submit', (event) => {
 
 const cards = document.querySelector('#cards');
 const cardTemplate = document.querySelector('#card-template');
-const inputTitle = document.querySelector('#titulo');
-const inputLink = document.querySelector('#link');
+const inputTitle = document.querySelector('#title');
+const inputLink = document.querySelector('#url');
 const addButton = document.querySelector('.profile__button-add');
 const saveButton = document.querySelector('.popup__save-button');
 
 const addCardForm = document.querySelector('#addCardForm');
+
+
 
 function handlePopupImgOpen(id) {
     const openPopupImg = document.querySelector('.popup__image');
@@ -113,15 +143,34 @@ function handlePopupImgOpen(id) {
     const popupText = openPopupImg.querySelector('.popup__image-text');
 
     const selectedCard = storeCards.find((card) => card.id === id);
-
+// Asignar los valores del popup
     popupImg.src = selectedCard.link;
     popupImg.alt = selectedCard.name;
     popupText.textContent = selectedCard.name;
 
-    closePopupImg.addEventListener('click', () => {
-        openPopupImg.classList.remove('popup__image-show');
+    // Función para cerrar el popup
+    const closePopup = () => {
+        openPopupImg.classList.remove('popup__image-show'); // Esto cierra la ventana emergente al eliminar la clase
+    };
+
+    // Cerrar ventana al hacer clic en el botón de cerrar
+    closePopupImg.addEventListener('click', closePopup);
+
+    //Cerrar ventana al hacer clic fuera de la imagen (fuera de los bordes del popup)
+    openPopupImg.addEventListener('click', (event) => {
+        // Verifica si el clic ocurrió fuera de la imagen (fuera de la ventana emergente)
+        if (!event.target.closest('.popup__image-container')) {
+            closePopup();  // Cerrar popup si el clic fue fuera de la imagen
+        }
     });
 
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {  
+            openPopupImg.classList.remove('popup__image-show'); 
+        }
+    });
+
+    // Mostrar la ventana emergente
     openPopupImg.classList.add('popup__image-show');
 }
 
@@ -209,4 +258,19 @@ addCardForm.addEventListener('submit', function (event) {
     } else {
         alert('Por favor, ingrese su nombre y enlace válido.');
     }
+});
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    enableValidation({
+        formSelector: ".popup__form",
+        inputSelector: ".popup__input",
+        submitButtonSelector: ".popup__save-button",
+        inactiveButtonClass: "popup__button_disabled",
+        inputErrorClass: "popup__input_type_error",
+        errorClass: "popup__error_visible"
+    });
 });

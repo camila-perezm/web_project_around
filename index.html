@@ -60,9 +60,27 @@
                 </button>
                 <h3 class="popup__title">Editar perfil</h3>
                 <form class="popup__form" name="Editar perfil">
-                    <input type="text" placeholder="Camila Perez" id="name" class="popup__form-name" />
-                    <input type="text" placeholder="Traveler" id="ocupation" class="popup__form-ocupation" />
-                    <button class="popup__save-button">Guardar</button>
+                    <input
+                        required
+                        type="text"
+                        placeholder="Camila Perez"
+                        id="name"
+                        class="popup__input popup__input_type_error"
+                        maxlength="40"
+                        minlength="2"
+                    />
+                    <span class="popup__input-error" id="name-error"></span>
+                    <input
+                        required
+                        type="text"
+                        placeholder="Traveler"
+                        id="ocupation"
+                        class="popup__input popup__input_type_error"
+                        maxlength="200"
+                        minlength="2"
+                    />
+                    <span class="popup__input-error" id="ocupation-error"></span>
+                    <button type="submit" class="popup__save-button">Guardar</button>
                 </form>
             </div>
         </section>
@@ -73,14 +91,30 @@
                     <img class="popup__close-button-icon" src="./images/Close Icon.png" />
                 </button>
                 <h3 class="popup__title">Nuevo Lugar</h3>
-
                 <form class="popup__form" name="Nuevo lugar" id="addCardForm">
-                    <input type="text" placeholder="Titulo" id="titulo" class="popup__form-name" />
-                    <input type="text" placeholder="Enlace a la imagen" id="link" class="popup__form-ocupation" />
-                    <button class="popup__save-button">Guardar</button>
+                    <input
+                        required
+                        type="text"
+                        placeholder="Titulo"
+                        id="title"
+                        class="popup__input popup__input_type_error"
+                        maxlength="30"
+                        minlength="2"
+                    />
+                    <span class="popup__input-error" id="title-error"></span>
+                    <input
+                        required
+                        type="url"
+                        placeholder="Enlace a la imagen"
+                        id="url"
+                        class="popup__input popup__input_type_error"
+                    />
+                    <span class="popup__input-error" id="url-error"></span>
+                    <button type="submit" class="popup__save-button">Guardar</button>
                 </form>
             </div>
         </section>
+
         <section class="popup__image">
             <div class="popup__image-root-container">
                 <div class="popup__image-container">
@@ -92,6 +126,7 @@
                 </div>
             </div>
         </section>
-        <script src="./scripts/index.js"></script>
+
+        <script src="./scripts/index.js" type="module"></script>
     </body>
 </html>
