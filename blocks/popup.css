@@ -60,20 +60,20 @@
     background: #000000;
     width: 238px;
     height: 46px;
-    border-radius: 2px;
+    border-radius: 5px;
     color: #ffffff;
     margin-top: 20px;
 }
 
 
 .popup__button_disabled {
-    background-color: #c4c4c4;
+    background-color: white;
     cursor: default; 
-    color: #000000;
     width: 238px;
     height: 46px;
-    border-radius: 2px;
+    border-radius: 5px;
     margin-top: 20px;
+    
 }
 
 .popup__close-button,
