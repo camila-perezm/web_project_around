@@ -128,8 +128,6 @@ const cards = document.querySelector('#cards');
 const cardTemplate = document.querySelector('#card-template');
 const inputTitle = document.querySelector('#title');
 const inputLink = document.querySelector('#url');
-const addButton = document.querySelector('.profile__button-add');
-const saveButton = document.querySelector('.popup__save-button');
 
 const addCardForm = document.querySelector('#addCardForm');
 

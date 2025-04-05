@@ -32,8 +32,12 @@ const toggleButtonstate = (form, button, requirements) => {
 
     if (isValid) {
         button.disabled = false;
+        button.classList.remove('popup__button_disabled');
+        button.classList.add('popup__save-button');
  } else {
        button.disabled = true;
+       button.classList.remove('popup__save-button');
+        button.classList.add('popup__button_disabled');
     }
 }
 
@@ -46,7 +50,6 @@ const setEventListener = (formElement, requirements) => {
     toggleButtonstate(formElement, button, requirements);
 
 
-    
     inputs.forEach((input) => {
         input.addEventListener("focus", () => {
             // Cuando el campo reciba el foco, añadimos la clase 'touched' 
