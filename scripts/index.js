@@ -1,19 +1,33 @@
-import {enableValidation} from './validate.js'
 
-const openModal = document.querySelector('.profile__about-edit');
-const popup = document.querySelector('.popup');
-const closeModal = document.querySelector('.popup__close-button');
+import FormValidator from './FormValidator.js';
+import Card from './card.js';
+import {
+    setupPopup,
+    handleProfileFormSubmit,
+    handlePopupImgOpen
+} from './utils.js';
+import { handleAddCardFormSubmit } from './utils.js';
+
+const openModal = document.querySelector('#popup-open');
+const popup = document.querySelector('#popup');
+const closeModal = document.querySelector('#popup-close');
 const formElement = document.querySelector('.popup__form');
 const inputName = document.querySelector('#name');
 const inputOcupation = document.querySelector('#ocupation');
 const profileName = document.querySelector('.profile__about-name');
 const profileOcupation = document.querySelector('.profile__about-ocupation');
 
-// Feedback: nombrar mejor las variables.
-const popup2 = document.querySelector('.popup2');
-const openModal2 = document.querySelector('.profile__button-add');
-const closeModal2 = document.querySelector('.popup__close-button2');
-// Feedback: base de datos de cartas
+const popupAddCard = document.querySelector('#popup-add-card');
+const openModalCard = document.querySelector('#popup-button-add');
+const closeModalCard = document.querySelector('#popup__close-add-card');
+
+const inputTitle = document.querySelector('#title');
+const inputLink = document.querySelector('#url');
+const cardTemplate = document.querySelector('#card-template');
+const addCardForm = document.querySelector('#addCardForm');
+
+
+
 let storeCards = [
     {
         id: 'img-1',
@@ -53,7 +67,40 @@ let storeCards = [
     },
 ];
 
-/*Abrir y cerar modal de editar perfil*/
+
+const validator = new FormValidator ({
+    formSelector: ".popup__form",
+    inputSelector: ".popup__input",
+    submitButtonSelector: ".popup__save-button",
+    inactiveButtonClass: "popup__button_disabled",
+    inputErrorClass: "popup__input_type_error",
+    errorClass: "popup__error_visible"
+})
+
+validator.enableValidation()
+
+const cardManager = new Card(storeCards, cardTemplate, handlePopupImgOpen);
+
+// Mostrar tarjetas
+cardManager.renderCards();
+
+
+setupPopup(openModal, popup, closeModal);
+handleProfileFormSubmit(formElement, inputName, inputOcupation, profileName, profileOcupation, popup)
+
+addCardForm.addEventListener('submit', function (event) {
+    handleAddCardFormSubmit(event, inputTitle, inputLink, storeCards, renderCards, popup);
+});
+
+setupPopup(openModalCard, popupAddCard, closeModalCard);
+handleProfileFormSubmit(formElement, inputTitle, inputLink, popupAddCard)
+
+
+
+
+/* voy a copiar desde aqui a utils.js
+
+//Abrir y cerar modal de editar perfil
 if (openModal && popup && closeModal) {
     openModal.addEventListener('click', (event) => {
         event.preventDefault();
@@ -80,7 +127,7 @@ document.addEventListener('keydown', (event) => {
 
 }
 
-/*Abrir y cerar modal de añadir carta*/
+//Abrir y cerar modal de añadir carta
 if (openModal2 && popup2 && closeModal2) {
     openModal2.addEventListener('click', (event) => {
         event.preventDefault();
@@ -107,7 +154,7 @@ document.addEventListener('keydown', (event) => {
 
 }
 
-/*Editar nombre y ocupacion*/
+//Editar nombre y ocupacion
 formElement.addEventListener('submit', (event) => {
     event.preventDefault();
     const nameValue = inputName.value.trim();
@@ -124,15 +171,11 @@ formElement.addEventListener('submit', (event) => {
     inputOcupation.value = '';
 });
 
-const cards = document.querySelector('#cards');
-const cardTemplate = document.querySelector('#card-template');
-const inputTitle = document.querySelector('#title');
-const inputLink = document.querySelector('#url');
-
-const addCardForm = document.querySelector('#addCardForm');
+*/
 
 
 
+/*
 function handlePopupImgOpen(id) {
     const openPopupImg = document.querySelector('.popup__image');
     const closePopupImg = document.querySelector('.popup__image-close-btn');
@@ -172,7 +215,11 @@ function handlePopupImgOpen(id) {
     openPopupImg.classList.add('popup__image-show');
 }
 
-/*Crear y eliminar cartas con el template*/
+ AQUI TERMINA A COPIA A UTILS.JS */
+
+/*
+
+//Crear y eliminar cartas con el template
 
 function deleteCard(cardId) {
     storeCards = storeCards.filter((card) => card.id !== cardId);
@@ -229,11 +276,14 @@ function renderCards() {
 
 renderCards();
 
-/* funcionalidad del boton like, para cambiar el color del boton despues de un click*/
-const likeButtons = document.querySelectorAll('.card__text-button-like');
+*/
+
+// funcionalidad del boton like, para cambiar el color del boton despues de un click
 
 
-/*Añadir nuevas cartas con el boton "+" */
+
+/*
+Añadir nuevas cartas con el boton "+" 
 
 addCardForm.addEventListener('submit', function (event) {
     event.preventDefault();
@@ -242,13 +292,13 @@ addCardForm.addEventListener('submit', function (event) {
     const link = inputLink.value.trim();
 
     if (name && link) {
-        /*id random para evitar que se repitan los id*/
+        //id random para evitar que se repitan los id
         const id = 'img-' + Math.random().toString(36).substring(2, 5);
         const newCard = { id, name, link };
         storeCards.unshift(newCard);
 
-        /*el popup se cierra luego de crear la carta*/
-        popup2.classList.remove('popup__show');
+        //el popup se cierra luego de crear la carta
+        popup.classList.remove('popup__show'); //aqui estuvo popup2
 
         inputTitle.value = '';
         inputLink.value = '';
@@ -256,19 +306,5 @@ addCardForm.addEventListener('submit', function (event) {
     } else {
         alert('Por favor, ingrese su nombre y enlace válido.');
     }
-});
+}); */
 
-
-
-
-
-document.addEventListener("DOMContentLoaded", function() {
-    enableValidation({
-        formSelector: ".popup__form",
-        inputSelector: ".popup__input",
-        submitButtonSelector: ".popup__save-button",
-        inactiveButtonClass: "popup__button_disabled",
-        inputErrorClass: "popup__input_type_error",
-        errorClass: "popup__error_visible"
-    });
-});

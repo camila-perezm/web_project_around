@@ -14,7 +14,7 @@ const hideError = (input, requirements) => {
     errorElement.classList.remove(requirements.errorClass);
     errorElement.textContent = '';
 }
-//funcion para validad los inputs
+//funcion para validar los inputs
 const checkInputValidity = (input, requirements) => {
     if (input.validity.valid) {
     hideError(input, requirements);
