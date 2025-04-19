@@ -23,18 +23,14 @@ export default class FormValidator {
         if (input.validity.valid) {
             this._hideError(input);
             input.classList.remove('touched');
-            console.log('valid');
         } else {
             this._showError(input);
             input.classList.add('touched');
-            console.log('invalid');
         }
     }
     // metodo para activar/desactivar el botón según la validez de los inputs
     _toggleButtonState() {
         const button = this._formElement.querySelector(this._requirements.submitButtonSelector);
-        console.log(button);
-        console.log(this._requirements.submitButtonSelector);
         const inputs = Array.from(this._formElement.querySelectorAll(this._requirements.inputSelector));
         const isValid = inputs.every((input) => input.validity.valid);
 
@@ -44,7 +40,6 @@ export default class FormValidator {
             button.classList.add('popup__save-button');
         } else {
             button.disabled = true;
-            // button.classList.remove('popup__save-button');
             button.classList.add('popup__button_disabled');
         }
     }
@@ -68,8 +63,6 @@ export default class FormValidator {
         });
     }
     //Llama a todos los formularions, habilita la validacion
-
-    // HACER UN FOR EACH PARA TODOS LOS FORMULARIOS
     enableValidation() {
         const forms = document.querySelectorAll(this._requirements.formSelector);
         forms.forEach((form) => {
