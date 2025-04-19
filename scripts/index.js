@@ -59,26 +59,22 @@ let storeCards = [
     },
 ];
 
-const validatorProfile = new FormValidator({
-    formSelector: '#profileForm',
-    inputSelector: '.popup__input',
-    submitButtonSelector: '.popup__save-button',
-    inactiveButtonClass: 'popup__button_disabled',
-    inputErrorClass: 'popup__input_type_error',
-    errorClass: 'popup__error_visible',
-});
+// Crear validadores
+const createValidator = (formSelector) => {
+    const validator = new FormValidator({
+        formSelector,
+        inputSelector: '.popup__input',
+        submitButtonSelector: '.popup__save-button',
+        inactiveButtonClass: 'popup__button_disabled',
+        inputErrorClass: 'popup__input_type_error',
+        errorClass: 'popup__error_visible',
+    });
+    validator.enableValidation();
+    return validator;
+};
 
-validatorProfile.enableValidation();
-
-const validatorAddCard = new FormValidator({
-    formSelector: '#addCardForm',
-    inputSelector: '.popup__input',
-    submitButtonSelector: '.popup__save-button',
-    inactiveButtonClass: 'popup__button_disabled',
-    inputErrorClass: 'popup__input_type_error',
-    errorClass: 'popup__error_visible',
-});
-validatorAddCard.enableValidation();
+const validatorProfile = createValidator('#profileForm');
+const validatorAddCard = createValidator('#addCardForm');
 
 const cardManager = new Card(storeCards, cardTemplate, handlePopupImgOpen);
 
