@@ -1,12 +1,6 @@
-
 import FormValidator from './FormValidator.js';
 import Card from './card.js';
-import {
-    setupPopup,
-    handleProfileFormSubmit,
-    handlePopupImgOpen
-} from './utils.js';
-import { handleAddCardFormSubmit } from './utils.js';
+import { setupPopup, handleProfileFormSubmit, handlePopupImgOpen, handleAddCardFormSubmit } from './utils.js';
 
 const openModal = document.querySelector('#popup-open');
 const popup = document.querySelector('#popup');
@@ -25,8 +19,6 @@ const inputTitle = document.querySelector('#title');
 const inputLink = document.querySelector('#url');
 const cardTemplate = document.querySelector('#card-template');
 const addCardForm = document.querySelector('#addCardForm');
-
-
 
 let storeCards = [
     {
@@ -67,36 +59,41 @@ let storeCards = [
     },
 ];
 
+const validatorProfile = new FormValidator({
+    formSelector: '#profileForm',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__save-button',
+    inactiveButtonClass: 'popup__button_disabled',
+    inputErrorClass: 'popup__input_type_error',
+    errorClass: 'popup__error_visible',
+});
 
-const validator = new FormValidator ({
-    formSelector: ".popup__form",
-    inputSelector: ".popup__input",
-    submitButtonSelector: ".popup__save-button",
-    inactiveButtonClass: "popup__button_disabled",
-    inputErrorClass: "popup__input_type_error",
-    errorClass: "popup__error_visible"
-})
+validatorProfile.enableValidation();
 
-validator.enableValidation()
+const validatorAddCard = new FormValidator({
+    formSelector: '#addCardForm',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__save-button',
+    inactiveButtonClass: 'popup__button_disabled',
+    inputErrorClass: 'popup__input_type_error',
+    errorClass: 'popup__error_visible',
+});
+validatorAddCard.enableValidation();
 
 const cardManager = new Card(storeCards, cardTemplate, handlePopupImgOpen);
 
 // Mostrar tarjetas
 cardManager.renderCards();
 
-
 setupPopup(openModal, popup, closeModal);
-handleProfileFormSubmit(formElement, inputName, inputOcupation, profileName, profileOcupation, popup)
+handleProfileFormSubmit(formElement, inputName, inputOcupation, profileName, profileOcupation, popup);
 
 addCardForm.addEventListener('submit', function (event) {
     handleAddCardFormSubmit(event, inputTitle, inputLink, storeCards, renderCards, popup);
 });
 
 setupPopup(openModalCard, popupAddCard, closeModalCard);
-handleProfileFormSubmit(formElement, inputTitle, inputLink, popupAddCard)
-
-
-
+//handleProfileFormSubmit(formElement, inputTitle, inputLink, popupAddCard, popup);
 
 /* voy a copiar desde aqui a utils.js
 
@@ -172,8 +169,6 @@ formElement.addEventListener('submit', (event) => {
 });
 
 */
-
-
 
 /*
 function handlePopupImgOpen(id) {
@@ -280,8 +275,6 @@ renderCards();
 
 // funcionalidad del boton like, para cambiar el color del boton despues de un click
 
-
-
 /*
 Añadir nuevas cartas con el boton "+" 
 
@@ -307,4 +300,3 @@ addCardForm.addEventListener('submit', function (event) {
         alert('Por favor, ingrese su nombre y enlace válido.');
     }
 }); */
-

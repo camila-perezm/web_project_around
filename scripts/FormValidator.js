@@ -72,7 +72,7 @@ export default class FormValidator {
     // HACER UN FOR EACH PARA TODOS LOS FORMULARIOS
     enableValidation() {
         const forms = document.querySelectorAll(this._requirements.formSelector);
-        forms.forEach(() => {
+        forms.forEach((form) => {
             this._setEventListener();
         });
     }
