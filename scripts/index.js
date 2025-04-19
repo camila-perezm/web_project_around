@@ -85,7 +85,7 @@ setupPopup(openModal, popup, closeModal);
 handleProfileFormSubmit(formElement, inputName, inputOcupation, profileName, profileOcupation, popup);
 
 addCardForm.addEventListener('submit', function (event) {
-    handleAddCardFormSubmit(event, inputTitle, inputLink, storeCards, renderCards, popup);
+    handleAddCardFormSubmit(event, inputTitle, inputLink, storeCards, () => cardManager.renderCards(), popup);
 });
 
 setupPopup(openModalCard, popupAddCard, closeModalCard);
