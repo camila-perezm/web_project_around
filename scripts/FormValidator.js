@@ -67,6 +67,7 @@ export default class FormValidator {
         const forms = document.querySelectorAll(this._requirements.formSelector);
         forms.forEach((form) => {
             this._setEventListener();
+            this._toggleButtonState();
         });
     }
 }
