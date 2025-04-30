@@ -24,10 +24,10 @@
                     </div>
                     <div class="profile__about">
                         <h2 class="profile__about-name">Camila Perez</h2>
-                        <p class="profile__about-ocupation">Traveler</p>
+                        <p class="profile__about-occupation">Traveler</p>
                     </div>
                     <button class="profile__about-edit" id="popup-open">
-                        <img class="profile__about-edit-icon" src="./images/edit_profile.png" />
+                        <img class="profile__about-edit-icon" src="./images/edit_profile.png" alt="Edit" />
                     </button>
                     <button class="profile__button-add" id="popup-button-add">+</button>
                 </section>
@@ -56,7 +56,7 @@
         <section class="popup" id="popup">
             <div class="popup__content">
                 <button class="popup__close-button" id="popup-close">
-                    <img class="popup__close-button-icon" src="./images/Close Icon.png" />
+                    <img class="popup__close-button-icon" src="./images/Close Icon.png" alt="Close" />
                 </button>
                 <h3 class="popup__title">Editar perfil</h3>
                 <form class="popup__form" name="Editar perfil" id="profileForm">
@@ -65,6 +65,7 @@
                         type="text"
                         placeholder="Camila Perez"
                         id="name"
+                        name="name"
                         class="popup__input popup__input_type_error"
                         maxlength="40"
                         minlength="2"
@@ -74,21 +75,22 @@
                         required
                         type="text"
                         placeholder="Traveler"
-                        id="ocupation"
+                        id="occupation"
+                        name="occupation"
                         class="popup__input popup__input_type_error"
                         maxlength="200"
                         minlength="2"
                     />
-                    <span class="popup__input-error" id="ocupation-error"></span>
+                    <span class="popup__input-error" id="occupation-error"></span>
                     <button type="submit" class="popup__save-button">Guardar</button>
                 </form>
             </div>
         </section>
 
-        <section class="popup2" id="popup-add-card">
+        <section class="popup" id="popup-add-card">
             <div class="popup__content">
-                <button class="popup__close-button-add-card" id="popup__close-add-card">
-                    <img class="popup__close-button-icon" src="./images/Close Icon.png" />
+                <button class="popup__close-button" id="popup__close-add-card">
+                    <img class="popup__close-button-icon" src="./images/Close Icon.png" alt="Close" />
                 </button>
                 <h3 class="popup__title">Nuevo Lugar</h3>
                 <form class="popup__form" name="Nuevo lugar" id="addCardForm">
@@ -97,6 +99,7 @@
                         type="text"
                         placeholder="Titulo"
                         id="title"
+                        name="title"
                         class="popup__input popup__input_type_error"
                         maxlength="30"
                         minlength="2"
@@ -107,6 +110,7 @@
                         type="url"
                         placeholder="Enlace a la imagen"
                         id="url"
+                        name="url"
                         class="popup__input popup__input_type_error"
                     />
                     <span class="popup__input-error" id="url-error"></span>
@@ -115,10 +119,10 @@
             </div>
         </section>
 
-        <section class="popup__image">
+        <section class="popup" id="popup-image">
             <div class="popup__image-root-container">
                 <div class="popup__image-container">
-                    <button class="popup__image-close-btn">
+                    <button class="popup__close-button">
                         <img src="./images/Close Icon.png" alt="Close" />
                     </button>
                     <img class="popup__image-url" src="" alt="" />

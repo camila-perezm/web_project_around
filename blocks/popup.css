@@ -11,6 +11,20 @@
     padding-top: 123px;
 }
 
+/*
+.popup__image {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+    padding-top: 123px;
+}
+*/
+
 .popup__show {
     display: flex;
     width: 100%;
@@ -76,25 +90,14 @@
     color: #888;
 }
 
-.popup__close-button,
-.popup__close-button-add-card {
+.popup__close-button {
     background: none;
     border: none;
     position: absolute;
     top: -30px;
     right: 10px;
-}
-
-.popup__image {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4);
-    padding-top: 123px;
+    max-width: 40px;
+    max-height: 40px;
 }
 
 .popup__image-show {
@@ -124,16 +127,6 @@
     width: 100%;
     height: 100%;
     object-fit: contain;
-}
-
-.popup__image-close-btn {
-    max-width: 40px;
-    max-height: 40px;
-    background: none;
-    border: none;
-    position: absolute;
-    top: -30px;
-    right: 10px;
 }
 
 .popup__image-text {

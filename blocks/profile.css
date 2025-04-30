@@ -35,7 +35,7 @@
      font-weight: 300;
  }
  
- .profile__about-ocupation {
+ .profile__about-occupation {
      margin-top: 0;
      text-align: center;
  }
@@ -72,7 +72,7 @@
         height: 24px;
     }
     
-    .profile__about-ocupation {
+    .profile__about-occupation {
         font-size: 18px;
         text-align: left;
     }

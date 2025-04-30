@@ -1,24 +1,18 @@
+import Section from './Section.js';
+import Card from './Card.js';
+import PopupWithForm from './PopupWithForm.js';
+import PopupWithImage from './PopupWithImage.js';
+import UserInfo from './UserInfo.js';
 import FormValidator from './FormValidator.js';
-import Card from './card.js';
-import { setupPopup, handleProfileFormSubmit, handlePopupImgOpen, handleAddCardFormSubmit } from './utils.js';
 
+//Elementos del DOM
 const openModal = document.querySelector('#popup-open');
-const popup = document.querySelector('#popup');
-const closeModal = document.querySelector('#popup-close');
-const formElement = document.querySelector('.popup__form');
 const inputName = document.querySelector('#name');
-const inputOcupation = document.querySelector('#ocupation');
-const profileName = document.querySelector('.profile__about-name');
-const profileOcupation = document.querySelector('.profile__about-ocupation');
-
-const popupAddCard = document.querySelector('#popup-add-card');
+const inputOccupation = document.querySelector('#occupation');
 const openModalCard = document.querySelector('#popup-button-add');
-const closeModalCard = document.querySelector('#popup__close-add-card');
-
 const inputTitle = document.querySelector('#title');
 const inputLink = document.querySelector('#url');
 const cardTemplate = document.querySelector('#card-template');
-const addCardForm = document.querySelector('#addCardForm');
 
 let storeCards = [
     {
@@ -59,16 +53,71 @@ let storeCards = [
     },
 ];
 
-//Abrir popups
-setupPopup(openModal, popup, closeModal);
-handleProfileFormSubmit(formElement, inputName, inputOcupation, profileName, profileOcupation, popup);
-
-addCardForm.addEventListener('submit', function (event) {
-    handleAddCardFormSubmit(event, inputTitle, inputLink, storeCards, () => cardManager.renderCards(), popupAddCard);
+// Botón para abrir el popup de editar perfil
+openModal.addEventListener('click', () => {
+    inputName.value = '';
+    inputOccupation.value = '';
+    profilePopup.open();
 });
-setupPopup(openModalCard, popupAddCard, closeModalCard);
 
-// Crear validadores
+// Botón para abrir el popup de agregar nueva carta
+openModalCard.addEventListener('click', () => {
+    inputTitle.value = '';
+    inputLink.value = '';
+    addCardPopup.open();
+});
+
+//Crea instancia de UserInfo
+const userInfo = new UserInfo({
+    nameSelector: '.profile__about-name',
+    occupationSelector: '.profile__about-occupation',
+});
+
+//Función para manejar el envío del formulario de perfil
+const handleProfileFormSubmit = (inputValues) => {
+    const { name, occupation } = inputValues;
+    userInfo.setUserInfo(name, occupation); // Actualiza los datos del perfil
+    profilePopup.close(); // Cierra el popup
+};
+
+// Crea instancia de PopupWithForm para el formulario de perfil
+const profilePopup = new PopupWithForm('#popup', handleProfileFormSubmit);
+profilePopup.setEventListeners();
+
+// Crear la instancia de PopupWithForm para agregar nueva carta
+const addCardPopup = new PopupWithForm('#popup-add-card', (inputValues) => {
+    const { title, url } = inputValues;
+
+    // Genera id aleatorio para la nueva carta
+    const newCard = {
+        id: 'img-' + Math.random().toString(36).substring(2, 5),
+        name: title,
+        link: url,
+        liked: false,
+    };
+
+    // Agrega la nueva carta al array de storeCards
+    storeCards.push(newCard);
+
+    // Crea la carta directamente y añade a la sección sin renderizar todo de nuevo
+    const card = new Card(newCard, cardTemplate, (data) => {
+        imagePopup.open(data); // Abre el popup con la imagen de la carta
+    });
+
+    // Añade la nueva carta al DOM
+    cardManager.addItem(card.createCard());
+
+    // Cierra el popup
+    addCardPopup.close();
+});
+
+addCardPopup.setEventListeners();
+
+// Crea instancia de PopupWithImage
+const imagePopup = new PopupWithImage('#popup-image');
+imagePopup.setEventListeners();
+
+// Crea validadores
 const createValidator = (formSelector) => {
     const validator = new FormValidator({
         formSelector,
@@ -85,7 +134,19 @@ const createValidator = (formSelector) => {
 const validatorProfile = createValidator('#profileForm');
 const validatorAddCard = createValidator('#addCardForm');
 
-const cardManager = new Card(storeCards, cardTemplate, handlePopupImgOpen);
+// Crea la clase Section para manejar las cartas
+const cardManager = new Section(
+    {
+        items: storeCards,
+        renderer: (cardData) => {
+            const card = new Card(cardData, cardTemplate, (data) => {
+                imagePopup.open(data); // Abre el popup con la imagen de la carta
+            });
+            return card.createCard(); // Devuelve la tarjeta generada
+        },
+    },
+    '#cards',
+);
 
-// Mostrar tarjetas
+// Muestra las tarjetas
 cardManager.renderCards();
