@@ -70,4 +70,13 @@ export default class FormValidator {
             this._toggleButtonState();
         });
     }
+
+    resetValidation() {
+        const inputs = Array.from(this._formElement.querySelectorAll(this._requirements.inputSelector));
+        inputs.forEach((input) => {
+            this._hideError(input);
+            input.classList.remove('touched');
+        });
+        this._toggleButtonState();
+    }
 }

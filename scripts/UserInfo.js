@@ -1,7 +1,8 @@
 class UserInfo {
-    constructor({ nameSelector, occupationSelector }) {
+    constructor({ nameSelector, occupationSelector, avatarSelector }) {
         this._name = document.querySelector(nameSelector);
         this._occupation = document.querySelector(occupationSelector);
+        this._avatar = document.querySelector(avatarSelector);
     }
 
     // Método para obtener los datos del usuario
@@ -18,11 +19,8 @@ class UserInfo {
         this._occupation.textContent = occupation;
     }
 
-    // Método para manejar el envío del formulario de perfil
-    handleProfileFormSubmit(inputValues) {
-        const { name, occupation } = inputValues;
-        this.setUserInfo(name, occupation); // Actualiza los datos del perfil
-        profilePopup.close(); // Cierra el popup
+    setAvatar(avatarUrl) {
+        this._avatar.src = avatarUrl;
     }
 }
 

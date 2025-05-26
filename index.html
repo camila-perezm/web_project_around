@@ -20,11 +20,14 @@
             <main class="content">
                 <section class="profile">
                     <div class="profile__avatar">
-                        <img src="./images/profilepic-min.png" alt="Avatar image" class="profile__avatar-img" />
+                        <img src="./images/Avatar.png" alt="Avatar image" class="profile__avatar-img" />
+                        <button class="profile__avatar-edit-button">
+                            <img src="./images/edit-icon.svg" alt="Edit" class="profile__avatar-edit-icon" />
+                        </button>
                     </div>
                     <div class="profile__about">
-                        <h2 class="profile__about-name">Camila Perez</h2>
-                        <p class="profile__about-occupation">Traveler</p>
+                        <h2 class="profile__about-name">Jacques Cousteau</h2>
+                        <p class="profile__about-occupation">Explorador</p>
                     </div>
                     <button class="profile__about-edit" id="popup-open">
                         <img class="profile__about-edit-icon" src="./images/edit_profile.png" alt="Edit" />
@@ -63,7 +66,7 @@
                     <input
                         required
                         type="text"
-                        placeholder="Camila Perez"
+                        placeholder="Name"
                         id="name"
                         name="name"
                         class="popup__input popup__input_type_error"
@@ -74,7 +77,7 @@
                     <input
                         required
                         type="text"
-                        placeholder="Traveler"
+                        placeholder="About"
                         id="occupation"
                         name="occupation"
                         class="popup__input popup__input_type_error"
@@ -128,6 +131,39 @@
                     <img class="popup__image-url" src="" alt="" />
                     <h2 class="popup__image-text"></h2>
                 </div>
+            </div>
+        </section>
+
+        <section class="popup popup_type_confirm" id="popup-confirm-delete">
+            <div class="popup__content">
+                <button class="popup__close-button" id="popup__close-confirm-delete">
+                    <img class="popup__close-button-icon" src="./images/Close Icon.png" alt="Close" />
+                </button>
+                <h3 class="popup__title">¿Estás seguro?</h3>
+                <form class="popup__form" name="confirmDeleteForm" novalidate>
+                    <button type="submit" class="popup__save-button popup__confirm-delete">Sí</button>
+                </form>
+            </div>
+        </section>
+
+        <section class="popup popup_type_edit-avatar" id="popup-edit-avatar">
+            <div class="popup__content">
+                <button class="popup__close-button" id="popup-edit-avatar-close">
+                    <img class="popup__close-button-icon" src="./images/Close Icon.png" alt="Close" />
+                </button>
+                <h3 class="popup__title">Actualizar foto de perfil</h3>
+                <form class="popup__form" id="avatarForm" name="avatarForm" novalidate>
+                    <input
+                        required
+                        type="url"
+                        placeholder="Enlace a la nueva foto"
+                        id="avatar-link"
+                        name="avatar"
+                        class="popup__input"
+                    />
+                    <span class="popup__input-error" id="avatar-link-error"></span>
+                    <button type="submit" class="popup__save-button">Guardar</button>
+                </form>
             </div>
         </section>
 

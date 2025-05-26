@@ -4,6 +4,8 @@ import PopupWithForm from './PopupWithForm.js';
 import PopupWithImage from './PopupWithImage.js';
 import UserInfo from './UserInfo.js';
 import FormValidator from './FormValidator.js';
+import api from './Api.js';
+import PopupWithConfirmation from './PopupWithConfirmation.js';
 
 //Elementos del DOM
 const openModal = document.querySelector('#popup-open');
@@ -14,44 +16,54 @@ const inputTitle = document.querySelector('#title');
 const inputLink = document.querySelector('#url');
 const cardTemplate = document.querySelector('#card-template');
 
-let storeCards = [
-    {
-        id: 'img-1',
-        name: 'Valle de Yosemite',
-        link: 'https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/yosemite.jpg',
-        liked: false,
-    },
-    {
-        id: 'img-2',
-        name: 'Lago Louise',
-        link: 'https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lake-louise.jpg',
-        liked: false,
-    },
-    {
-        id: 'img-3',
-        name: 'Montañas Calvas',
-        link: 'https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/bald-mountains.jpg',
-        liked: false,
-    },
-    {
-        id: 'img-4',
-        name: 'Latemar',
-        link: 'https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/latemar.jpg',
-        liked: false,
-    },
-    {
-        id: 'img-5',
-        name: 'Parque Nacional de la Vanoise',
-        link: 'https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/vanoise.jpg',
-        liked: false,
-    },
-    {
-        id: 'img-6',
-        name: 'Lago di Braies',
-        link: 'https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lago.jpg',
-        liked: false,
-    },
-];
+const avatarForm = document.forms['avatarForm'];
+const avatarInput = avatarForm.elements['avatar'];
+const avatarImage = document.querySelector('.profile__avatar-img');
+const avatarPopup = document.getElementById('popup-edit-avatar');
+const editAvatarButton = document.querySelector('.profile__avatar-edit-button');
+
+let userId;
+let cardManager;
+
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+    .then(([userData, cards]) => {
+        userId = userData._id;
+        userInfo.setUserInfo(userData.name, userData.about);
+        userInfo.setAvatar(userData.avatar);
+
+        cardManager = new Section(
+            {
+                items: [],
+                renderer: (cardData) => {
+                    const card = new Card(
+                        cardData,
+                        cardTemplate,
+                        (data) => imagePopup.open(data),
+                        popupConfirmDelete,
+                        userId,
+                    );
+                    return card.createCard();
+                },
+            },
+            '#cards',
+        );
+
+        cards.forEach((cardData) => {
+            console.log('Carta recibida:', cardData);
+
+            if (!cardData.link || cardData.link === 'https://imagen.url') {
+                api.deleteCard(cardData._id).catch(console.error);
+                return;
+            }
+
+            const card = new Card(cardData, cardTemplate, (data) => imagePopup.open(data), popupConfirmDelete, userId);
+            const cardElement = card.createCard();
+            if (cardElement) cardManager.addItem(cardElement);
+        });
+    })
+    .catch((err) => {
+        console.error('Error al obtener usuario o tarjetas:', err);
+    });
 
 // Botón para abrir el popup de editar perfil
 openModal.addEventListener('click', () => {
@@ -67,48 +79,89 @@ openModalCard.addEventListener('click', () => {
     addCardPopup.open();
 });
 
+//Abrir popup de editar perfil
+editAvatarButton.addEventListener('click', () => {
+    avatarInput.value = '';
+    avatarValidator.resetValidation();
+    editAvatarPopup.open();
+});
+
 //Crea instancia de UserInfo
 const userInfo = new UserInfo({
     nameSelector: '.profile__about-name',
     occupationSelector: '.profile__about-occupation',
+    avatarSelector: '.profile__avatar-img',
 });
 
 //Función para manejar el envío del formulario de perfil
 const handleProfileFormSubmit = (inputValues) => {
+    profilePopup.renderLoading(true);
     const { name, occupation } = inputValues;
-    userInfo.setUserInfo(name, occupation); // Actualiza los datos del perfil
-    profilePopup.close(); // Cierra el popup
+
+    api.updateUserInfo({ name, occupation })
+        .then((updateUserData) => {
+            // Actualiza la interfaz con los datos devueltos por el servidor
+            userInfo.setUserInfo(updateUserData.name, updateUserData.about);
+            profilePopup.close(); // Cierra el popup
+        })
+        .catch((err) => {
+            console.error('Error al actualizar el perfil', err);
+        })
+        .finally(() => {
+            profilePopup.renderLoading(false); // Asegura que vuelva a "Guardar"
+        });
 };
 
 // Crea instancia de PopupWithForm para el formulario de perfil
 const profilePopup = new PopupWithForm('#popup', handleProfileFormSubmit);
 profilePopup.setEventListeners();
 
-// Crear la instancia de PopupWithForm para agregar nueva carta
+//Maejo del formulatio del avatar
+const handleAvatarFormSubmit = (inputValues) => {
+    editAvatarPopup.renderLoading(true);
+
+    api.updateAvatar({ avatar: inputValues.avatar })
+        .then((updatedUser) => {
+            userInfo.setAvatar(updatedUser.avatar);
+            editAvatarPopup.close();
+        })
+        .catch((err) => {
+            console.error('Error al actualizar el avatar:', err);
+        })
+        .finally(() => {
+            editAvatarPopup.renderLoading(false);
+        });
+};
+
+const editAvatarPopup = new PopupWithForm('#popup-edit-avatar', handleAvatarFormSubmit);
+editAvatarPopup.setEventListeners();
+
 const addCardPopup = new PopupWithForm('#popup-add-card', (inputValues) => {
-    const { title, url } = inputValues;
+    addCardPopup.renderLoading(true);
 
-    // Genera id aleatorio para la nueva carta
-    const newCard = {
-        id: 'img-' + Math.random().toString(36).substring(2, 5),
-        name: title,
-        link: url,
-        liked: false,
-    };
-
-    // Agrega la nueva carta al array de storeCards
-    storeCards.push(newCard);
-
-    // Crea la carta directamente y añade a la sección sin renderizar todo de nuevo
-    const card = new Card(newCard, cardTemplate, (data) => {
-        imagePopup.open(data); // Abre el popup con la imagen de la carta
-    });
-
-    // Añade la nueva carta al DOM
-    cardManager.addItem(card.createCard());
-
-    // Cierra el popup
-    addCardPopup.close();
+    api.addCard({
+        name: inputValues.title,
+        link: inputValues.url,
+    })
+        .then((newCardData) => {
+            const card = new Card(
+                newCardData,
+                cardTemplate,
+                (data) => {
+                    imagePopup.open(data);
+                },
+                popupConfirmDelete,
+                userId,
+            );
+            cardManager.addItem(card.createCard());
+            addCardPopup.close();
+        })
+        .catch((err) => {
+            console.error('Error al añadir la tarjeta', err);
+        })
+        .finally(() => {
+            addCardPopup.renderLoading(false);
+        });
 });
 
 addCardPopup.setEventListeners();
@@ -133,20 +186,7 @@ const createValidator = (formSelector) => {
 
 const validatorProfile = createValidator('#profileForm');
 const validatorAddCard = createValidator('#addCardForm');
+const avatarValidator = createValidator('#avatarForm');
 
-// Crea la clase Section para manejar las cartas
-const cardManager = new Section(
-    {
-        items: storeCards,
-        renderer: (cardData) => {
-            const card = new Card(cardData, cardTemplate, (data) => {
-                imagePopup.open(data); // Abre el popup con la imagen de la carta
-            });
-            return card.createCard(); // Devuelve la tarjeta generada
-        },
-    },
-    '#cards',
-);
-
-// Muestra las tarjetas
-cardManager.renderCards();
+const popupConfirmDelete = new PopupWithConfirmation('#popup-confirm-delete');
+popupConfirmDelete.setEventListeners();
