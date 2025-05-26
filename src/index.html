@@ -7,22 +7,22 @@
         <meta name="author" content="Camila Perez" />
         <meta name="keywords" content="HTML, CSS" />
         <title>Alrededor de los EE.UU.</title>
-        <link rel="shortcut icon" href="./icon.svg" />
-        <link rel="stylesheet" href="./pages/index.css" />
+        <link rel="shortcut icon" href="../icon.svg" />
+        <link rel="stylesheet" href="../pages/index.css" />
     </head>
     <body>
         <div class="page">
             <header class="header">
                 <div class="header__img">
-                    <img src="./images/header_img.png" alt="Alrededor de los EE.UU." />
+                    <img src="../images/header_img.png" alt="Alrededor de los EE.UU." />
                 </div>
             </header>
             <main class="content">
                 <section class="profile">
                     <div class="profile__avatar">
-                        <img src="./images/Avatar.png" alt="Avatar image" class="profile__avatar-img" />
+                        <img src="../images/Avatar.png" alt="Avatar image" class="profile__avatar-img" />
                         <button class="profile__avatar-edit-button">
-                            <img src="./images/edit-icon.svg" alt="Edit" class="profile__avatar-edit-icon" />
+                            <img src="../images/edit-icon.svg" alt="Edit" class="profile__avatar-edit-icon" />
                         </button>
                     </div>
                     <div class="profile__about">
@@ -30,7 +30,7 @@
                         <p class="profile__about-occupation">Explorador</p>
                     </div>
                     <button class="profile__about-edit" id="popup-open">
-                        <img class="profile__about-edit-icon" src="./images/edit_profile.png" alt="Edit" />
+                        <img class="profile__about-edit-icon" src="../images/edit_profile.png" alt="Edit" />
                     </button>
                     <button class="profile__button-add" id="popup-button-add">+</button>
                 </section>
@@ -39,13 +39,13 @@
                 <template id="card-template">
                     <div class="card">
                         <div class="card__img">
-                            <img class="card__delete-icon" src="./images/delete.svg" alt="" />
+                            <img class="card__delete-icon" src="../images/delete.svg" alt="" />
                             <img class="card__img-url" src="" alt="" />
                         </div>
                         <div class="card__text-container">
                             <h2 class="card__text"></h2>
                             <button class="card__text-button-like">
-                                <img src="./images/like.svg" alt="Like" />
+                                <img src="../images/like.svg" alt="Like" />
                             </button>
                         </div>
                     </div>
@@ -59,7 +59,7 @@
         <section class="popup" id="popup">
             <div class="popup__content">
                 <button class="popup__close-button" id="popup-close">
-                    <img class="popup__close-button-icon" src="./images/Close Icon.png" alt="Close" />
+                    <img class="popup__close-button-icon" src="../images/Close Icon.png" alt="Close" />
                 </button>
                 <h3 class="popup__title">Editar perfil</h3>
                 <form class="popup__form" name="Editar perfil" id="profileForm">
@@ -93,7 +93,7 @@
         <section class="popup" id="popup-add-card">
             <div class="popup__content">
                 <button class="popup__close-button" id="popup__close-add-card">
-                    <img class="popup__close-button-icon" src="./images/Close Icon.png" alt="Close" />
+                    <img class="popup__close-button-icon" src="../images/Close Icon.png" alt="Close" />
                 </button>
                 <h3 class="popup__title">Nuevo Lugar</h3>
                 <form class="popup__form" name="Nuevo lugar" id="addCardForm">
@@ -126,7 +126,7 @@
             <div class="popup__image-root-container">
                 <div class="popup__image-container">
                     <button class="popup__close-button">
-                        <img src="./images/Close Icon.png" alt="Close" />
+                        <img src="../images/Close Icon.png" alt="Close" />
                     </button>
                     <img class="popup__image-url" src="" alt="" />
                     <h2 class="popup__image-text"></h2>
@@ -137,7 +137,7 @@
         <section class="popup popup_type_confirm" id="popup-confirm-delete">
             <div class="popup__content">
                 <button class="popup__close-button" id="popup__close-confirm-delete">
-                    <img class="popup__close-button-icon" src="./images/Close Icon.png" alt="Close" />
+                    <img class="popup__close-button-icon" src="../images/Close Icon.png" alt="Close" />
                 </button>
                 <h3 class="popup__title">¿Estás seguro?</h3>
                 <form class="popup__form" name="confirmDeleteForm" novalidate>
@@ -149,7 +149,7 @@
         <section class="popup popup_type_edit-avatar" id="popup-edit-avatar">
             <div class="popup__content">
                 <button class="popup__close-button" id="popup-edit-avatar-close">
-                    <img class="popup__close-button-icon" src="./images/Close Icon.png" alt="Close" />
+                    <img class="popup__close-button-icon" src="../images/Close Icon.png" alt="Close" />
                 </button>
                 <h3 class="popup__title">Actualizar foto de perfil</h3>
                 <form class="popup__form" id="avatarForm" name="avatarForm" novalidate>
@@ -167,6 +167,6 @@
             </div>
         </section>
 
-        <script src="./scripts/index.js" type="module"></script>
+        <script src="../scripts/index.js" type="module"></script>
     </body>
 </html>
