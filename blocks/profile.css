@@ -86,7 +86,20 @@
  }
 
 
+@media screen and (min-width: 768px) and (max-width: 1279px) {
+     .profile {
+       max-width: 720px;
+       display: flex;
+       flex-direction: row;
+       align-items: center;
+       justify-content: space-between;
+    }
 
+    .profile__button-add {
+        width: 120px;
+        height: 50px;
+    }
+}
 
 
  @media screen and (min-width: 1280px) {  
@@ -119,3 +132,4 @@
     }
 
  }
+
